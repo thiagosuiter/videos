@@ -1,20 +1,53 @@
-function carregar() {
-    var msg = window.document.getElementById('msg')
-    var img = window.document.getElementById('imagem')
+function verificar() {
     var data = new Date()
-    var hora = data.getHours()
-    msg.innerHTML = `Agora são ${hora} horas.`
-    if (hora >= 0 && hora < 12) {
-        // BOM DIA!
-        img.src = 'fotomanha.png'
-        document.body.style.background = '#e2cd9f'
-    } else if (hora >= 12 && hora <= 18) {
-        // BOA TARDE!
-        img.src = 'fototarde.png'
-        document.body.style.background = '#b9846f'
-    } else {
-        // BOA NOITE!
-        img.src = 'fotonoite.png'
-        document.body.style.background = '#515154'
+    var ano = data.getFullYear()
+    var fano = document.getElementById('txtano')
+    var res = document.getElementById('res')
+
+    if (fano.value.length == 0 || Number(fano.value) > ano) {
+        alert('[ERRO] Verifique os dados e tente novamente!')
+        return
     }
+
+    var sexo = document.getElementsByName('sexo')
+    var idade = ano - Number(fano.value)
+    var genero = ''
+    var classificacao = ''
+    var img = document.createElement('img')
+    img.setAttribute('id', 'foto')
+
+    if (sexo[0].checked) {
+        genero = 'Homem'
+        if (idade < 12) {
+            classificacao = 'criança'
+            img.setAttribute('src', 'homem_crianca.png')
+        } else if (idade < 21) {
+            classificacao = 'jovem'
+            img.setAttribute('src', 'homem_jovem.png')
+        } else if (idade < 60) {
+            classificacao = 'adulto'
+            img.setAttribute('src', 'homem_adulto.png')
+        } else {
+            classificacao = 'idoso'
+            img.setAttribute('src', 'homem_idoso.png')
+        }
+    } else if (sexo[1].checked) {
+        genero = 'Mulher'
+        if (idade < 12) {
+            classificacao = 'criança'
+            img.setAttribute('src', 'mulher_crianca.png')
+        } else if (idade < 21) {
+            classificacao = 'jovem'
+            img.setAttribute('src', 'mulher_jovem.png')
+        } else if (idade < 60) {
+            classificacao = 'adulta'
+            img.setAttribute('src', 'mulher_adulta.png')
+        } else {
+            classificacao = 'idosa'
+            img.setAttribute('src', 'mulher_idosa.png')
+        }
+    }
+
+    res.innerHTML = `<p>Detectamos ${genero} ${classificacao} com ${idade} anos.</p>`
+    res.appendChild(img)
 }

@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hora do Dia</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Verificador de Idade e Gênero</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body onload="carregar()">
+<body>
     <header>
-        <h1>Hora do Dia</h1>
+        <h1>Verificador de Idade</h1>
     </header>
     <section>
-        <div id="msg">
-            Aqui vai aparecer a mensagem...
+        <div class="campo">
+            <label for="txtano">Ano de nascimento:</label>
+            <input type="number" name="txtano" id="txtano" min="1900" max="2025">
         </div>
-        <div id="foto">
-            <img id="imagem" src="fotomanha.png" alt="Foto do dia">
+        <div class="campo">
+            <label>Sexo:</label>
+            <input type="radio" name="sexo" id="masc" value="masculino" checked>
+            <label for="masc">Masculino</label>
+            <input type="radio" name="sexo" id="fem" value="feminino">
+            <label for="fem">Feminino</label>
+        </div>
+        <div class="campo">
+            <input type="button" value="Verificar Idade" onclick="verificar()">
+        </div>
+        <div id="res">
+            <p></p>
         </div>
     </section>
     <footer>
-        <p>&copy; CursoemVideo</p>
+        <p>&copy; CursoemVídeo</p>
     </footer>
     <script src="script.js"></script>
 </body>
